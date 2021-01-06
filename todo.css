@@ -1,0 +1,102 @@
+:root{
+    --firs-color:#2A4CF6;
+    --secod-color:  #E3390A;
+    --third-color: #F0F7F4;
+    --fourth-color: #272D2D;
+    --fifth-color: #020402;
+    --gradient-color: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+    --hover: #2A324B;
+}
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 7px;
+}
+h3{
+    text-align: center;
+}
+ul li{
+    list-style: none;
+    /*cursor: pointer;*/
+}
+i{
+    font-size: 1.5 rem;
+    cursor: pointer;
+}
+/* (~): agarra todo los nodos con esa misma etiqueta */
+/* (+): solo agarra solo a un nodo con esa etiqueta*/
+/*input:checked + span {
+    text-decoration: line-through;
+}*/
+.strike{
+    text-decoration: line-through;
+    color: var(--fourth-color);
+}
+
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+td{
+    padding: 10px;
+}
+td.firstColor{
+    background: var(--firs-color);
+    color: var(--third-color);
+}
+td.firstColor{
+    background: var(--firs-color);
+    color: var(--third-color);
+}
+td.firstColor{
+    background: var(--firs-color);
+    var(--third-color);
+}
+td#secondColor{
+    background: var(--secod-color);
+    color: var(--third-color);
+}
+.colorTd{
+    background: #F0F7F4;/*0B132B*/
+    color:#020402;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.center{
+    text-align: center;
+}
+/*Media queries*/
+@media (max-width: 500px){
+    input{
+        padding: 2px;
+        width: 100%;
+        margin-bottom: 5px;
+        border: 0 2px 0 0 solid black;
+    }
+    button{
+        width: 100%;
+        background: var(--fourth-color);
+        margin-top: 10px;
+        border-style: none;
+        padding: 5px;
+        border-radius: 2px;
+        color: var(--third-color);
+        text-transform: uppercase ;
+        transition: 600ms ease-out;
+    }
+    button:hover{
+        background: var(--hover);
+    }
+    table{
+        margin-top: 10px;
+        width: 100%;
+    }
+    th{
+        height: 1.5px;
+    }
+}
