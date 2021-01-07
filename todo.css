@@ -2,8 +2,10 @@
     --firs-color:#2A4CF6;
     --secod-color:  #E3390A;
     --third-color: #F0F7F4;
+    --light-third-color: #F7F7F2;
     --fourth-color: #272D2D;
     --fifth-color: #020402;
+    --border-color: 1px solid #2F2F2F;  
     --gradient-color: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
     --hover: #2A324B;
 }
@@ -54,14 +56,14 @@ td.firstColor{
 }
 td.firstColor{
     background: var(--firs-color);
-    var(--third-color);
+    color : var(--third-color);
 }
 td#secondColor{
     background: var(--secod-color);
     color: var(--third-color);
 }
 .colorTd{
-    background: #F0F7F4;/*0B132B*/
+    background:var(--light-third-color);/*0B132B*/
     color:#020402;
     text-align: center;
     border-bottom: 1px solid white;
@@ -69,6 +71,16 @@ td#secondColor{
 
 .center{
     text-align: center;
+}
+select{
+    border-radius: 3px;
+    border: var(--border-color);
+    color: var(--fifth-color);
+}
+#defaultCat{
+    background: var(--fourth-color);
+    color: var(--third-color);
+    
 }
 /*Media queries*/
 @media (max-width: 500px){

@@ -19,17 +19,18 @@
     <datalist id="categoryList">
         <option value="Trabajo"></option>
         <option value="Personal"></option>
-        <option value="Studiar"></option>
+        <option value="Estudiar"></option>
         <option value="Importante"></option>
     </datalist>    
     <table id="todoTable">
         <tr>
             <td class="colorTd firstColor center">Hecho</td>
             <td class="colorTd firstColor center">Tarea</td>
-            <td class="colorTd firstColor center" >Categoria</td>
+            <td class="colorTd firstColor center" ><select id="categoryFilter" >
+                <!--<option id="defaultCat" value="Categoria" enabled>Categoria</option>-->
+            </select></td>
             <td id="secondColor" class="colorTd center">Borrar</td>
         </tr>
-        <th></th>
     </table>
 </body>
 <script src="todo.js"></script>
