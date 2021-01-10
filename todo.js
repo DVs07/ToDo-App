@@ -7,10 +7,20 @@ function todoMain(){
         secInputEle,
         button,
         ulElement,
-        selectCategory;
+        selectCategory,
+        todoList = [];//Se crea un array, este solo puede contener string, se guardan en el local storage.
     
+
+        /*LOCAL STORAGE */
+        //localStorage.setItem("Prueba", todoList);
+        /*todoList = localStorage.getItem("Prueba");
+        console.log(todoList);*/
+
         getElements();
-    addListeners();
+        addListeners();
+        //Cargo las tareas desde el local storage
+        loadLocalStorage()
+        renderRows();
 
     function getElements(){
         //First input agrega elementos a la lista
@@ -38,58 +48,19 @@ function todoMain(){
         //2nd
         let secInputValue = secInputEle.value;
         secInputEle.value = "";
+        
+        displayRow(inputValue,secInputValue);
 
-        //Tabla
-        let todoTable = document.getElementById("todoTable");
-
-        let trElement = document.createElement("tr");
-
-        todoTable.appendChild(trElement);
-
-        //Celda Checkbox
-        let checkboxELement = document.createElement("input");
-        checkboxELement.type = "checkbox";
-        let tdFirst = document.createElement("td");
-        tdFirst.appendChild(checkboxELement);
-        trElement.appendChild(tdFirst);
-        tdFirst.classList.add("colorTd");
-        tdFirst.classList.add("center");
-        checkboxELement.addEventListener("click", done, false);
-        //Celda To-Do
-        let tdSecond = document.createElement("td");
-        tdSecond.innerText = inputValue;
-        trElement.appendChild(tdSecond);
-        tdSecond.classList.add("colorTd");
-        //Celda Categoria
-        let tdThird = document.createElement("td");
-        tdThird.innerText = secInputValue;
-        trElement.appendChild(tdThird);
-        tdThird.classList.add("colorTd");
-        //Celda Borrar
-        let deleteIcon = document.createElement("i");
-        deleteIcon.style.fontSize = "1.5em";
-        deleteIcon.className= "las la-trash-alt";
-        deleteIcon.addEventListener("click", deleteItem, false );
-        let tdFourth = document.createElement("td");
-        tdFourth.appendChild(deleteIcon);
-        trElement.appendChild(tdFourth);
-        tdFourth.classList.add("colorTd");
-        tdFourth.classList.add("center");
+        /* PUSH ITEMS */
+        todoList.push(inputValue);//Se guardan los valores del 1er input en el array
+        
+        /*Funciones LOCAL STORAGE*/ 
+        //funcion para guardar en local storage
+        saveLocalStorage();
 
         //Agrega nuevas categorias
         updateOptionsCategory();
 
-
-        //Alternativa
-    function deleteItem(){
-        trElement.remove();
-        updateOptionsCategory();
-
-    }
-
-    function done(){
-        trElement.classList.toggle("strike");
-    }
     }
     
 
@@ -97,8 +68,6 @@ function todoMain(){
 
         let selection = selectCategory. value;
         
-
-
         //Alternativa
         //Categoria muestra todas las tareas
         if(selection == DEFAULT_OPTION){
@@ -129,7 +98,7 @@ function todoMain(){
 
     //Actualiza y agrega opciones de categorias 
     function updateOptionsCategory(){
-        //Creo un array para esas nuevsa categorias
+        //Creo un array para esas nuevas categorias
         let newOptionsCategories = []
         let rows = document.getElementsByTagName("tr");
         Array.from(rows).forEach( (row, index) => {
@@ -169,5 +138,73 @@ function todoMain(){
             
         
     }
+    /* LOCAL STORAGE */
+    function saveLocalStorage(){
+        let stringified = JSON.stringify(todoList);
+        localStorage.setItem("todoList", stringified);
+    }
+    function loadLocalStorage(){
+        let retrieved = localStorage.getItem("todoList");
+        todoList = JSON.parse(retrieved);
+        console.log(typeof todoList);
+        if(todoList == null){
+            todoList = [];
+        }
+    }
+    function renderRows(){
+        todoList.forEach((todo) => {
+            displayRow(todo, null);
+        });
+        console.log(todoList);
+    }
+    //Muestro las tareas guardadas en local storage
+    function displayRow(inputValue,secInputValue){
+        //Tabla
+        let todoTable = document.getElementById("todoTable");
 
+        let trElement = document.createElement("tr");
+
+        todoTable.appendChild(trElement);
+
+        //Celda Checkbox
+        let checkboxELement = document.createElement("input");
+        checkboxELement.type = "checkbox";
+        let tdFirst = document.createElement("td");
+        tdFirst.appendChild(checkboxELement);
+        trElement.appendChild(tdFirst);
+        tdFirst.classList.add("colorTd");
+        tdFirst.classList.add("center");
+        checkboxELement.addEventListener("click", done, false);
+        //Celda To-Do
+        let tdSecond = document.createElement("td");
+        tdSecond.innerText = inputValue;
+        trElement.appendChild(tdSecond);
+        tdSecond.classList.add("colorTd");
+        //Celda Categoria
+        let tdThird = document.createElement("td");
+        tdThird.innerText = secInputValue;
+        trElement.appendChild(tdThird);
+        tdThird.classList.add("colorTd");
+        //Celda Borrar
+        let deleteIcon = document.createElement("i");
+        deleteIcon.style.fontSize = "1.5em";
+        deleteIcon.className= "las la-trash-alt";
+        deleteIcon.addEventListener("click", deleteItem, false );
+        let tdFourth = document.createElement("td");
+        tdFourth.appendChild(deleteIcon);
+        trElement.appendChild(tdFourth);
+        tdFourth.classList.add("colorTd");
+        tdFourth.classList.add("center");
+        
+        // Eliminar una tarea -  Alternativa
+        function deleteItem(){
+            trElement.remove();
+            updateOptionsCategory();
+        }
+        //Funcion hecha, se la tacha
+        function done(){
+            trElement.classList.toggle("strike");
+        }
+
+    }
 };
