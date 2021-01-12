@@ -7,28 +7,32 @@
     <link rel="stylesheet" href="todo.css">
     <!--    Line Awesome    -->
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <title>ToDO </title>
+    <title>To-do APP </title>
 </head>
 <body>
-    <h3>ToDO</h3>
+    <h3>Tarea</h3>
     <!--    Inputs  -->
-    <input type="text" placeholder="Enter new to-do">
-    <p><input type="text" placeholder="Enter category" list="categoryList"></p>
-    <button id="addBtn">Agregar</button>
+    <input type="text" placeholder="Ingrese una nueva tarea">
+    <p><input type="text" placeholder="Ingrese una categoria" list="categoryList"></p>
     <!--<ul></ul>-->
     <datalist id="categoryList">
         <option value="Trabajo"></option>
         <option value="Personal"></option>
         <option value="Estudiar"></option>
         <option value="Importante"></option>
-    </datalist>    
+    </datalist>
+    <p><input type="date" name="" id="dateInput"></p>
+    <p><input type="time" name="" id="timeInput"></p>
+    <button id="addBtn">Agregar</button>    
     <table id="todoTable">
         <tr>
-            <td class="colorTd firstColor center">Hecho</td>
+            <td class="colorTd firstColor center"><i class="las la-tasks"></i></i></td>
+            <td class="colorTd firstColor center">Fecha</td>
+            <td class="colorTd firstColor center">Hora</td>
             <td class="colorTd firstColor center">Tarea</td>
             <td class="colorTd firstColor center" ><select id="categoryFilter" >
             </select></td>
-            <td id="secondColor" class="colorTd center">Borrar</td>
+            <td  class="colorTd firstColor center"><i class="lar la-times-circle"></i></td>
         </tr>
     </table>
 </body>

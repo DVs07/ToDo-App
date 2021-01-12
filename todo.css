@@ -1,6 +1,6 @@
 :root{
-    --firs-color:#2A4CF6;
-    --secod-color:  #E3390A;
+    --firs-color:#235789;
+    --secod-color:  #C1292E;
     --third-color: #F0F7F4;
     --light-third-color: #F7F7F2;
     --fourth-color: #272D2D;
@@ -58,10 +58,7 @@ td.firstColor{
     background: var(--firs-color);
     color : var(--third-color);
 }
-td#secondColor{
-    background: var(--secod-color);
-    color: var(--third-color);
-}
+
 .colorTd{
     background:var(--light-third-color);/*0B132B*/
     color:#020402;
@@ -81,6 +78,9 @@ select{
     background: var(--fourth-color);
     color: var(--third-color);
     
+}
+.eliminar{
+    color: var(--secod-color);
 }
 /*Media queries*/
 @media (max-width: 500px){
@@ -110,5 +110,8 @@ select{
     }
     th{
         height: 1.5px;
+    }
+    i{
+        font-size: 1.5rem;
     }
 }
