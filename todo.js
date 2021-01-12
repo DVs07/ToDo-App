@@ -76,8 +76,7 @@ function todoMain(){
         /* PUSH ITEMS */
         todoList.push(object);//Se crea un objeto para almacenar en LS también la categoria 
         
-        /*Funciones LOCAL STORAGE*/ 
-        //funcion para guardar en local storage
+
         saveLocalStorage();
 
     }
@@ -165,7 +164,7 @@ function todoMain(){
     function loadLocalStorage(){
         let retrieved = localStorage.getItem("todoList");
         todoList = JSON.parse(retrieved);
-        //console.log(typeof todoList);
+        
         if(todoList == null){
             todoList = [];
         }
@@ -173,33 +172,14 @@ function todoMain(){
     /* ROWS */ 
     function renderRows(){
         todoList.forEach((todoObject) => {
-            /*let arr = ["manzana","naranja"];
-            console.log(typeof arr);
-            for( let keys in arr){
-                console.log(`${keys} -> ${arr[keys]}`);
-            }*/
-
-            //Accedo al campo de mi objeto
-            //let todoEntry = todoObject.todo;
-            //let todoEntry = todoObject["todo"];
-            //let key = "category";
-            //let todoCategory = todoObject[key];
-
+        
             displayRow(todoObject);
         });
-        //console.log(todoList);
+
     }
     //Muestro las tareas guardadas en local storage
     function displayRow({todo: inputValue, category: secInputValue, id, date, time, done}){
-        //Asigno los valores ingresados a los campos de mi objeto
-        /* 
-        let inputValue = object.todo;
-        let secInputValue = object.category;
-        */
-        
-        //Alternativa de asignación
-        //let{todo: inputValue, category: secInputValue} = object;
-        
+
         //Tabla
         let todoTable = document.getElementById("todoTable");
 
@@ -285,7 +265,6 @@ function todoMain(){
                     todoList[i].done = this.checked;
                 }
             }
-            //console.log(this.dataset.id);//Confirmamos que esta hecha la tarea
             saveLocalStorage();
         }
     }
