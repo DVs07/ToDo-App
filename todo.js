@@ -124,7 +124,7 @@ function todoMain(){
             if(index == 0){
                 return;
             }
-            let category = row.getElementsByTagName("td")[2].innerText;
+            let category = row.getElementsByTagName("td")[4].innerText;
             
                 //Agrego al final del array la nueva categoria
                 newOptionsCategories.push(category);
@@ -187,13 +187,14 @@ function todoMain(){
 
         todoTable.appendChild(trElement);
 
+        trElement.classList.add("colorTd");
         //Celda Checkbox
         let checkboxELement = document.createElement("input");
         checkboxELement.type = "checkbox";
         let tdFirst = document.createElement("td");
         tdFirst.appendChild(checkboxELement);
         trElement.appendChild(tdFirst);
-        tdFirst.classList.add("colorTd");
+        //tdFirst.classList.add("colorTd");
         tdFirst.classList.add("center");
         checkboxELement.addEventListener("click", checkboxClickCallback, false);
         checkboxELement.dataset.id = id;//Lo uso como indice para saber su posición
@@ -207,23 +208,24 @@ function todoMain(){
             year: "numeric",
         });
         console.log(formattedDate);
+        tdDate.innerText = formattedDate;
         trElement.appendChild(tdDate);
-        tdDate.classList.add("colorTd");
+        //tdDate.classList.add("colorTd");
         //Celda Hora
         let tdTime = document.createElement("td");
         tdTime.innerText = time;
         trElement.appendChild(tdTime);
-        tdTime.classList.add("colorTd");
+        //tdTime.classList.add("colorTd");
         //Celda To-Do
         let tdSecond = document.createElement("td");
         tdSecond.innerText = inputValue;
         trElement.appendChild(tdSecond);
-        tdSecond.classList.add("colorTd");
+        //tdSecond.classList.add("colorTd");
         //Celda Categoria
         let tdThird = document.createElement("td");
         tdThird.innerText = secInputValue;
         trElement.appendChild(tdThird);
-        tdThird.classList.add("colorTd");
+        //tdThird.classList.add("colorTd");
         //Celda Borrar
         let deleteIcon = document.createElement("i");
         deleteIcon.style.fontSize = "1.5em";
@@ -233,9 +235,9 @@ function todoMain(){
         let tdFourth = document.createElement("td");
         tdFourth.appendChild(deleteIcon);
         trElement.appendChild(tdFourth);
-        tdFourth.classList.add("colorTd");
+        //tdFourth.classList.add("colorTd");
         tdFourth.classList.add("center");
-        tdFourth.classList.add("eliminar");
+        //tdFourth.classList.add("eliminar");
         
         console.log(done);
         checkboxELement.type = "checkbox";
