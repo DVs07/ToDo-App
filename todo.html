@@ -12,21 +12,27 @@
 <body>
     <h3>Tarea</h3>
     <div class="container">
-        <!--    Inputs  -->
+        <div class="containerNew">
+            <!--    Inputs  -->
         <input type="text" placeholder="Ingrese una nueva tarea">
         <input type="text" placeholder="Ingrese una categoria" list="categoryList">
-    <!--<ul></ul>-->
+        </div> 
     <datalist id="categoryList">
         <option value="Trabajo"></option>
         <option value="Personal"></option>
         <option value="Estudiar"></option>
         <option value="Importante"></option>
     </datalist>
-    <input type="date" name="" id="dateInput">
-    <input type="time" name="" id="timeInput">
+    <div class="containerInputs">
+        <input type="date" name="" id="dateInput">
+        <input type="time" name="" id="timeInput">
+    </div>
+    
     <!-- Buttons -->
+    <div class="containerBtn">
         <button id="addBtn"><i class="las la-plus space"></i></button>
         <button id="sortBtn"><i class="las la-sort-amount-down-alt space"></i></button>
+    </div>    
     </div>
 
     <table id="todoTable">

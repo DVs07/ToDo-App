@@ -22,13 +22,41 @@ body{
     background: var(--body-color);
 }
 h3{
-    text-align: left;
+    margin-left: 17%;
+    color: var(--light-color);
+    margin-bottom: 10px;
+}
+input{
+    width: 40%;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+button#addBtn{
+    width: 30px;
+    padding: 5px;
+    border-radius: 50%;
+}
+.containerBtn{
+    width: 40%;
+}
+button#sortBtn{
+    width: 20%;
+    padding: 5px;
+    border-radius: 20px;
 }
 .container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+}
+.containerNew{
+    display: flex;
+    flex-direction: column;
+}
+.containerInputs{
+    display: flex;
     flex-direction: column;
 }
 i{
@@ -53,14 +81,14 @@ td{
 td.firstColor{
     border-bottom: 3px solid var(--body-color);
     
-    background: var(--third-color);
+    background: var(--medium-color);
     /*background: var(--first-color);
     color: var(--third-color);*/
     color: var(--light-color);
 }
 .colorTd{
-    background:var(--second-color);/*0B132B*/
-    color:var(--light-color);
+    background:var(--light-color);/*0B132B*/
+    color:var(--dark-color);
     text-align: center;
     border-bottom: 1px solid var(--body-color);
 }
@@ -86,12 +114,10 @@ button{
 ===================*/
 @media (max-width: 767px){
     h3{
+        margin: 0;
         text-align: center;
         color: var(--light-color);
-        margin-bottom: 5px;
-    }
-    .container{
-        flex-direction: row;
+        margin-bottom: 10px;
     }
     input{
         padding: 6px 10px;
@@ -113,39 +139,66 @@ button{
         font-weight: 300;
     }
     input#dateInput{
-        width: 35%;
+        width: 55%;
+        height: 40px;
     }
     input#timeInput{
-        width: 20%;
+        width: 35%;
+        height: 40px;
     }
+    .container{
+        flex-direction: row;
+    }
+    .containerNew{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .containerInputs{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 70%;
+}
+    .containerBtn{  
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 30%;
+}
     button#addBtn{
-        background: var(--border-color-one);
-        color: var(--light-color);
+        width: 40px;
+        height: 40px;
+        background: var(--body-color);
+        color: var(--third-color);
+        border: 2.7px solid var(--third-color);
         font-size: 1em;
         padding: 5px; /*top left bottom right*/ 
         text-transform: uppercase ;
         border-radius: 50%;
-        border: none;
         outline: none;
         transition: 600ms ease-out;
     }
     button#sortBtn{
-        background: var(--border-color-two);
-        color: var(--light-color);
-        width: 20%;
+        height: 40px;
+        background: var(--body-color);
+        color: var(--border-color-two);
+        border: 2.5px solid var(--border-color-two);
+        width: 50%;
         padding: 5px 0 5px 0; /*top left bottom right*/ 
         text-transform: uppercase;
-        border: none;
         border-radius: 45px;
         outline: none;
         
         transition: 600ms ease-out;
     }
     button#addBtn:hover{
-        
+        background: var(--border-color-one);
+        color: var(--light-color);
     }
     button#sortBtn:hover{
-        
+        background: var(--border-color-two);
+        color: var(--light-color);
     }
     table{
         margin-top: 10px;
