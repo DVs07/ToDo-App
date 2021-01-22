@@ -26,52 +26,77 @@ h3{
     color: var(--light-color);
     margin-bottom: 10px;
 }
-input{
-    width: 40%;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    padding: 5px 10px;
-}
 
-button#addBtn{
-    width: 30px;
-    padding: 5px;
-    border-radius: 50%;
-}
-.containerBtn{
-    width: 40%;
-}
-button#sortBtn{
-    width: 20%;
-    padding: 5px;
+input{
+    margin-bottom: 15px;
     border-radius: 20px;
+    padding: 6px 10px;
+    border: none;
+    outline: none;
+}
+button{
+    border: none;
 }
 .container{
+    width: 50%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
 }
 .containerNew{
+    width: 50%;
     display: flex;
     flex-direction: column;
+}
+.containerNew input{
+    height: 32px;
+    width: 100%;
 }
 .containerInputs{
+    padding-left: 20px;
+    width: 35%;
     display: flex;
     flex-direction: column;
 }
-i{
-    font-size: 1.5 rem;
+.containerBtn{
+    display: flex;
+    width: 15%;
+    flex-direction: column;
 }
-/* (~): agarra todo los nodos con esa misma etiqueta */
-/* (+): solo agarra solo a un nodo con esa etiqueta*/
-/*input:checked + span {
-    text-decoration: line-through;
-}*/
+button i{
+    font-size: 20px;
+}
+#dateInput{
+    width: 100%;
+}
+#timeInput{
+    width: 70%;
+}
+button#addBtn{
+    height: 32px;
+    width: 35px;
+    border-radius: 50%;
+    margin-left: 28.5%;
+    background: var(--body-color);
+    color: var(--third-color);
+    border: 2.7px solid var(--third-color);
+}
+button#sortBtn{
+    width: 70%;
+    height: 32px;
+    border-radius: 20px;
+    margin-top: 20%;
+    margin-left: 15%;
+    background: var(--body-color);
+    color: var(--border-color-two);
+    border: 2.5px solid var(--border-color-two);
+}
 .strike{
     text-decoration: line-through;
     color: var(--line-trough-color)!important;
 }
 table{
+    width: 50%;
     margin-top: 20px;
     border-collapse: collapse;
 }
@@ -80,10 +105,7 @@ td{
 }
 td.firstColor{
     border-bottom: 3px solid var(--body-color);
-    
     background: var(--medium-color);
-    /*background: var(--first-color);
-    color: var(--third-color);*/
     color: var(--light-color);
 }
 .colorTd{
@@ -103,8 +125,17 @@ select{
 .eliminar{
     color: var(--second-color);
 }
+button#addBtn:hover{
+    background: var(--border-color-one);
+    color: var(--light-color);
+}
+button#sortBtn:hover{
+    background: var(--border-color-two);
+    color: var(--light-color);
+}
 button{
     cursor: pointer;
+    transition: 600ms ease-out;
 }
 /*Media queries*/ 
 
@@ -120,12 +151,9 @@ button{
         margin-bottom: 10px;
     }
     input{
-        padding: 6px 10px;
         width: 100%;
         margin-bottom: 10px;
-        border: none;
         border-radius: 20px;
-        outline: none;
         font-size: 1em;
     }
     input:hover{
@@ -147,6 +175,7 @@ button{
         height: 40px;
     }
     .container{
+        width: 100%;
         flex-direction: row;
     }
     .containerNew{
@@ -154,13 +183,18 @@ button{
         display: flex;
         flex-direction: column;
     }
+    .containerInputs input{
+        width: 100%;
+    }
     .containerInputs{
+        padding-left: 0; 
         display: flex;
         justify-content: space-between;
         flex-direction: row;
         width: 70%;
 }
-    .containerBtn{  
+    .containerBtn{ 
+        padding-left: 0; 
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -169,36 +203,22 @@ button{
     button#addBtn{
         width: 40px;
         height: 40px;
-        background: var(--body-color);
-        color: var(--third-color);
-        border: 2.7px solid var(--third-color);
         font-size: 1em;
         padding: 5px; /*top left bottom right*/ 
         text-transform: uppercase ;
         border-radius: 50%;
         outline: none;
-        transition: 600ms ease-out;
+        margin-left: 0;
     }
     button#sortBtn{
         height: 40px;
-        background: var(--body-color);
-        color: var(--border-color-two);
-        border: 2.5px solid var(--border-color-two);
         width: 50%;
         padding: 5px 0 5px 0; /*top left bottom right*/ 
         text-transform: uppercase;
         border-radius: 45px;
         outline: none;
-        
-        transition: 600ms ease-out;
-    }
-    button#addBtn:hover{
-        background: var(--border-color-one);
-        color: var(--light-color);
-    }
-    button#sortBtn:hover{
-        background: var(--border-color-two);
-        color: var(--light-color);
+        margin-top: 0;
+        margin-left: 0;
     }
     table{
         margin-top: 10px;
@@ -213,34 +233,66 @@ button{
 }
 @media screen and (min-width: 768px) and
 (max-width: 1023px){
-    input{
+    h3{
+        margin: 0;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .container{
         width: 100%;
-        margin-bottom: 15px;
+        flex-direction: row;
+    }
+    .containerNew{
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .containerNew input{
+        width: 47%;
+        padding-left: 10px;
+    }
+    .containerInputs{
+        padding-left: 0; 
+        width: 60%;
+        flex-direction: row;
+    }
+    .containerBtn{
+        flex-direction: row;
+        padding-left: 10%; 
+        width: 40%;
+    }
+    #dateInput{
+        padding-left: 10px;
+        width: 40%;
+    }
+    #timeInput{
+        padding-left: 10px;
+        width: 32%;
+        margin-left: 30px;
+    }
+    input{
         padding: 5px;
-        border: none;
         color: var(--medium-color);
-        border-bottom: 2px solid var(--first-color);
-        border-right: 5px solid var(--first-color);
-        outline: none;
+        font-size: .9rem;
+        font-weight: 450;
     }
     button{
-        padding: 5px;
-        border-radius: 2px;
-        border: 1px solid var(--dark-color);
-        width: 49.6%;
-        right: 0;
-        transition: 600ms ease-out;
-        text-transform: uppercase;
+    outline: none;
     }
     button#addBtn{
-        border: 2px solid var(--border-color-one);
-        color: var(--border-color-one);
+        height: 40px;
+        width: 40px;
+        font-size: 18px;
+        margin-left: 0;
     }
     button#sortBtn{
-        border: 2px solid var(--border-color-two);
-        color: var(--border-color-two);
+        height: 40px;
+        font-size: 18px;
+        width: 45%;
+        margin-left: 5%;
+        margin-top: 0;
     }
-    th{
-        color: #C1292E;
+    table{
+        width: 100%;
     }
 }

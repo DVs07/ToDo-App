@@ -102,7 +102,7 @@ function todoMain(){
                 if(index == 0){
                     return;
                 }
-                let category = row.getElementsByTagName("td")[2].innerText;
+                let category = row.getElementsByTagName("td")[4].innerText;
                 if(category == selectCategory.value){
                     row.style.display = "";
                 }
