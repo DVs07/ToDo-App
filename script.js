@@ -5,18 +5,13 @@ function todoMain(){
 
     let inputElement,
         secInputEle,
-        button,
+        addButton,
+        sortButton,
         //ulElement,
         dateInput,
         timeInput,
         selectCategory,
         todoList = [];//Se crea un array, este solo puede contener string, se guardan en el local storage.
-    
-
-        /*LOCAL STORAGE */
-        //localStorage.setItem("Prueba", todoList);
-        /*todoList = localStorage.getItem("Prueba");
-        console.log(todoList);*/
 
         getElements();
         addListeners();
@@ -33,15 +28,15 @@ function todoMain(){
         secInputEle = document.getElementsByTagName("input")[1];
         dateInput = document.getElementById("dateInput");
         timeInput = document.getElementById("timeInput");
-        button = document.getElementById("addBtn");
-        
+        addButton = document.getElementById("addBtn");
+        sortButton = document.getElementById("sortBtn");
         selectCategory = document.getElementById("categoryFilter");
     };
     
     function addListeners(){
-        button.addEventListener("click", addEntry, false);
+        addButton.addEventListener("click", addEntry, false);
+        sortButton.addEventListener("click", sortEntry,false);
         selectCategory.addEventListener("change", filterEntries, false);
-
     }
     function addEntry(event){
 
@@ -76,11 +71,9 @@ function todoMain(){
         /* PUSH ITEMS */
         todoList.push(object);//Se crea un objeto para almacenar en LS también la categoria 
         
-
         saveLocalStorage();
 
     }
-    
 
     function filterEntries(event){
 
@@ -90,7 +83,7 @@ function todoMain(){
         //Categoria muestra todas las tareas
         if(selection == DEFAULT_OPTION){
             let rows = document.getElementsByTagName("tr");
-            Array.from(rows) .forEach( (row, index) => {
+            Array.from(rows) .forEach( (row) => {
                 row.style.display = "";
             });
         }
@@ -118,26 +111,14 @@ function todoMain(){
     function updateOptionsCategory(){
         //Creo un array para esas nuevas categorias
         let newOptionsCategories = []
-        let rows = document.getElementsByTagName("tr");
-        Array.from(rows).forEach( (row, index) => {
-            //Devuelve la 1er fila de la tabla
-            if(index == 0){
-                return;
-            }
-            let category = row.getElementsByTagName("td")[4].innerText;
-            
-                //Agrego al final del array la nueva categoria
-                newOptionsCategories.push(category);
-            
+        todoList.forEach((obj) => {
+            newOptionsCategories.push(obj.category);
         });
-        //console.log(newOptionsCategories);
 
         let optionsSet = new Set(newOptionsCategories)
-        //console.log(optionsSet);
 
         //Vacia las categorias
         selectCategory.innerHTML = "";
-
         //Se muestran todas las categorias
         let newCategory = document.createElement("option");
         //El problema es que si borro mi tarea, la categoria sigue dentro de las opciones de categoria
@@ -149,12 +130,10 @@ function todoMain(){
                 //Agregar nuevas categorias desde del input
                 let newCategory = document.createElement("option");
                 //El problema es que si borro mi tarea, la categoria sigue dentro de las opciones de categoria
-                newCategory.innerText = option;
                 newCategory.value = option;
+                newCategory.innerText = option;
                 selectCategory.appendChild(newCategory);
             }
-            
-        
     }
     /* LOCAL STORAGE */
     function saveLocalStorage(){
@@ -210,22 +189,23 @@ function todoMain(){
         console.log(formattedDate);
         tdDate.innerText = formattedDate;
         trElement.appendChild(tdDate);
-        //tdDate.classList.add("colorTd");
+        
         //Celda Hora
         let tdTime = document.createElement("td");
         tdTime.innerText = time;
         trElement.appendChild(tdTime);
-        //tdTime.classList.add("colorTd");
+        
         //Celda To-Do
         let tdSecond = document.createElement("td");
         tdSecond.innerText = inputValue;
         trElement.appendChild(tdSecond);
-        //tdSecond.classList.add("colorTd");
+        
         //Celda Categoria
         let tdThird = document.createElement("td");
         tdThird.innerText = secInputValue;
+        tdThird.className = "categoryCell";
         trElement.appendChild(tdThird);
-        //tdThird.classList.add("colorTd");
+
         //Celda Borrar
         let deleteIcon = document.createElement("i");
         deleteIcon.style.fontSize = "1.5em";
@@ -235,7 +215,6 @@ function todoMain(){
         let tdFourth = document.createElement("td");
         tdFourth.appendChild(deleteIcon);
         trElement.appendChild(tdFourth);
-        //tdFourth.classList.add("colorTd");
         tdFourth.classList.add("center");
         //tdFourth.classList.add("eliminar");
         
@@ -270,6 +249,7 @@ function todoMain(){
             saveLocalStorage();
         }
     }
+    //Crea un ID unico para cada tarea
     function _uuid() {
         let d = Date.now();
         if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
@@ -280,5 +260,38 @@ function todoMain(){
             d = Math.floor(d / 16);
             return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
         });
+    }
+    function sortEntry(){
+        todoList.sort((a,b)=> {
+            let aDate = Date.parse(a.date);//Lo parse a milisegundos
+            let bDate = Date.parse(b.date);
+            return aDate - bDate;
+        });
+        saveLocalStorage();//Guarda automaticamente ordenada las tareas por fecha
+        
+        let trElements = document.getElementsByTagName("tr");//
+        for(let i = trElements.length - 1; i > 0 ;i--){
+            trElements[i].remove();
+        }
+        /*
+        Ordeno mis tareas por fecha y las muestro todas, seria de mejor funcionalidad
+        poder ordenar segun en que categiria estemos
+        let table = document.getElementById("todoTable");
+        table.innerHTML = `
+        <tr>
+            <td class="firstColor center"><i class="las la-tasks"></i></i></td>
+            <td class="firstColor center">Fecha</td>
+            <td class="firstColor center">Hora</td>
+            <td class="firstColor center">Tarea</td>
+            <td class="firstColor center" ><select id="categoryFilter" >
+            </select></td>
+            <td  class="colorTd firstColor center"><i class="lar la-times-circle"></i></td>
+        </tr>
+        `;
+        selectCategory = document.getElementById("categoryFilter");
+        console.log(selectCategory);
+        updateOptionsCategory();
+        selectCategory.addEventListener("change", filterEntries, false);*/
+        renderRows();
     }
 };

@@ -63,6 +63,11 @@ button{
     width: 15%;
     flex-direction: column;
 }
+button{
+    outline: none;
+    cursor: pointer;
+    transition: 600ms ease-out;
+}
 button i{
     font-size: 20px;
 }
@@ -70,26 +75,34 @@ button i{
     width: 100%;
 }
 #timeInput{
-    width: 70%;
+    width: 100%;
 }
 button#addBtn{
-    height: 32px;
-    width: 35px;
-    border-radius: 50%;
+    height: 33px;
+    width: 70%;
+    border-radius: 20px;
     margin-left: 28.5%;
-    background: var(--body-color);
-    color: var(--third-color);
-    border: 2.7px solid var(--third-color);
+    background: var(--border-color-one);
+    color: var(--body-color);
+}
+button#addBtn:hover{
+    background: var(--third-color);
+    color: var(--light-color);
 }
 button#sortBtn{
     width: 70%;
-    height: 32px;
+    height: 33px;
     border-radius: 20px;
-    margin-top: 20%;
+    margin-top: 16.6%;
     margin-left: 15%;
-    background: var(--body-color);
-    color: var(--border-color-two);
-    border: 2.5px solid var(--border-color-two);
+    margin-left: 28.5%;
+    background: var(--second-color);
+    color: var(--body-color);
+    
+}
+button#sortBtn:hover{
+    background: var(--border-color-two);
+    color: var(--light-color);
 }
 .strike{
     text-decoration: line-through;
@@ -124,18 +137,6 @@ select{
 }
 .eliminar{
     color: var(--second-color);
-}
-button#addBtn:hover{
-    background: var(--border-color-one);
-    color: var(--light-color);
-}
-button#sortBtn:hover{
-    background: var(--border-color-two);
-    color: var(--light-color);
-}
-button{
-    cursor: pointer;
-    transition: 600ms ease-out;
 }
 /*Media queries*/ 
 
@@ -197,7 +198,7 @@ button{
         padding-left: 0; 
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         width: 30%;
 }
     button#addBtn{
@@ -208,7 +209,7 @@ button{
         text-transform: uppercase ;
         border-radius: 50%;
         outline: none;
-        margin-left: 0;
+        margin-left: 15%;
     }
     button#sortBtn{
         height: 40px;
@@ -231,6 +232,7 @@ button{
         font-size: 1.5rem;
     }
 }
+/*Tablets screen*/
 @media screen and (min-width: 768px) and
 (max-width: 1023px){
     h3{
@@ -253,21 +255,21 @@ button{
     }
     .containerInputs{
         padding-left: 0; 
-        width: 60%;
+        width: 50%;
         flex-direction: row;
     }
     .containerBtn{
-        flex-direction: row;
-        padding-left: 10%; 
-        width: 40%;
+        padding-left: 3%;
+        flex-direction: row; 
+        width: 50%;
     }
     #dateInput{
         padding-left: 10px;
-        width: 40%;
+        width: 45%;
     }
     #timeInput{
         padding-left: 10px;
-        width: 32%;
+        width: 40%;
         margin-left: 30px;
     }
     input{
@@ -281,16 +283,18 @@ button{
     }
     button#addBtn{
         height: 40px;
-        width: 40px;
+        width: 35%;
+        border-radius: 20px;
         font-size: 18px;
         margin-left: 0;
     }
     button#sortBtn{
         height: 40px;
         font-size: 18px;
-        width: 45%;
+        width: 60%;
         margin-left: 5%;
         margin-top: 0;
+        border-radius: 20px;
     }
     table{
         width: 100%;
