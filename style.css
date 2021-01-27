@@ -18,13 +18,18 @@
     box-sizing: border-box;
 }
 body{
-    padding: 7px;
     background: var(--body-color);
+    display: flex;
+    flex-direction: row;
+}
+h2{
+    color: var(--light-color);
 }
 h3{
-    margin-left: 17%;
     color: var(--light-color);
-    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 input{
@@ -38,13 +43,14 @@ button{
     border: none;
 }
 .container{
-    width: 50%;
+    padding: 5px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
 .containerNew{
-    width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
 }
@@ -54,13 +60,13 @@ button{
 }
 .containerInputs{
     padding-left: 20px;
-    width: 35%;
+    width: 30%;
     display: flex;
     flex-direction: column;
 }
 .containerBtn{
     display: flex;
-    width: 15%;
+    width: 25%;
     flex-direction: column;
 }
 button{
@@ -79,9 +85,9 @@ button i{
 }
 button#addBtn{
     height: 33px;
-    width: 70%;
+    width: 80%;
     border-radius: 20px;
-    margin-left: 28.5%;
+    margin-left: 15%;
     background: var(--border-color-one);
     color: var(--body-color);
 }
@@ -90,12 +96,11 @@ button#addBtn:hover{
     color: var(--light-color);
 }
 button#sortBtn{
-    width: 70%;
+    width: 80%;
     height: 33px;
     border-radius: 20px;
-    margin-top: 16.6%;
+    margin-top: 14px;
     margin-left: 15%;
-    margin-left: 28.5%;
     background: var(--second-color);
     color: var(--body-color);
     
@@ -108,8 +113,8 @@ button#sortBtn:hover{
     text-decoration: line-through;
     color: var(--line-trough-color)!important;
 }
-table{
-    width: 50%;
+table#todoTable{
+    width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
 }
@@ -138,6 +143,13 @@ select{
 .eliminar{
     color: var(--second-color);
 }
+.containerCalendar{
+    padding: 0px 5px 15px 0;
+    width: 100%;
+}
+#calendar{
+    width: 100%;
+}
 /*Media queries*/ 
 
 /* 
@@ -145,6 +157,9 @@ select{
     MOBILE FIRST 
 ===================*/
 @media (max-width: 767px){
+    body{
+        flex-direction: column;
+    }
     h3{
         margin: 0;
         text-align: center;
@@ -205,7 +220,7 @@ select{
         width: 40px;
         height: 40px;
         font-size: 1em;
-        padding: 5px; /*top left bottom right*/ 
+        padding: 10px; /*top left bottom right*/ 
         text-transform: uppercase ;
         border-radius: 50%;
         outline: none;
@@ -214,14 +229,18 @@ select{
     button#sortBtn{
         height: 40px;
         width: 50%;
-        padding: 5px 0 5px 0; /*top left bottom right*/ 
+        padding: 10px; /*top left bottom right*/ 
         text-transform: uppercase;
         border-radius: 45px;
         outline: none;
         margin-top: 0;
         margin-left: 0;
     }
-    table{
+span.hide{
+    bottom: -30px;
+    visibility: hidden;
+    }
+    tabl#todoTable{
         margin-top: 10px;
         width: 100%;
     }
@@ -235,6 +254,9 @@ select{
 /*Tablets screen*/
 @media screen and (min-width: 768px) and
 (max-width: 1023px){
+    body{
+        flex-direction: column;
+    }
     h3{
         margin: 0;
         text-align: center;
@@ -281,15 +303,19 @@ select{
     button{
     outline: none;
     }
+    button span{
+        text-transform: uppercase;
+        font-size: 15px;
+    }
     button#addBtn{
-        height: 40px;
-        width: 35%;
+        height: 33px;
+        width: 40%;
         border-radius: 20px;
         font-size: 18px;
         margin-left: 0;
     }
     button#sortBtn{
-        height: 40px;
+        height: 33px;
         font-size: 18px;
         width: 60%;
         margin-left: 5%;

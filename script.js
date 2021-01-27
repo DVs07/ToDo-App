@@ -7,19 +7,19 @@ function todoMain(){
         secInputEle,
         addButton,
         sortButton,
-        //ulElement,
         dateInput,
         timeInput,
         selectCategory,
-        todoList = [];//Se crea un array, este solo puede contener string, se guardan en el local storage.
+        todoList = [],//Se crea un array, este solo puede contener string, se guardan en el local storage.
+        calendar;
 
         getElements();
         addListeners();
-        //Cargo las tareas desde el local storage
-        loadLocalStorage()
+        initCalendar();
+        loadLocalStorage()//Cargo las tareas desde el local storage
         renderRows();
-        //Agrega nuevas categorias
-        updateOptionsCategory();
+        
+        updateOptionsCategory();//Agrega nuevas categorias
 
     function getElements(){
         //First input agrega elementos a la lista
@@ -78,33 +78,25 @@ function todoMain(){
     function filterEntries(event){
 
         let selection = selectCategory. value;
-        
+
+        //Vacio mi tabla pero mantengo mi 1er fila
+        let trElements = document.getElementsByTagName("tr");//
+        for(let i = trElements.length - 1; i > 0 ;i--){
+            trElements[i].remove();
+        }
+        calendar.getEvents().forEach(event => event.remove());//Al filtrar por categoria, las muestro en el calendario.
         //Alternativa
         //Categoria muestra todas las tareas
         if(selection == DEFAULT_OPTION){
-            let rows = document.getElementsByTagName("tr");
-            Array.from(rows) .forEach( (row) => {
-                row.style.display = "";
-            });
+            todoList.forEach( object => displayRow(object) );
         }
         else{
-            //Solo se muestra lo filtrado segun categoria
-            let rows = document.getElementsByTagName("tr");
-            Array.from(rows).forEach( (row, index) => {
-                //Devuelve la 1er fila de la tabla
-                if(index == 0){
-                    return;
+            todoList.forEach( object => {
+                if( object.category == selection ){
+                    displayRow(object);
                 }
-                let category = row.getElementsByTagName("td")[4].innerText;
-                if(category == selectCategory.value){
-                    row.style.display = "";
-                }
-                else{
-                    row.style.display = "none";
-                }
-            });
+            })
         }
-        
     }
 
     //Actualiza y agrega opciones de categorias 
@@ -154,7 +146,6 @@ function todoMain(){
         
             displayRow(todoObject);
         });
-
     }
     //Muestro las tareas guardadas en local storage
     function displayRow({todo: inputValue, category: secInputValue, id, date, time, done}){
@@ -227,6 +218,11 @@ function todoMain(){
             trElement.classList.remove("strike");
         }
 
+        addEventCalendar({
+            id: id,
+            title: inputValue,
+            start: date,
+        });
         // Eliminar una tarea -  Alternativa
         function deleteItem(){
             trElement.remove();
@@ -236,6 +232,8 @@ function todoMain(){
                     todoList.splice(i,1);//Borro  la tarea del LS
                 }
                 saveLocalStorage();
+                //Se borra la tarea también en el calendario
+                calendar.getEventById(this.dataset.id).remove();
             }
         }
         //Funcion hecha, se la tacha
@@ -268,30 +266,25 @@ function todoMain(){
             return aDate - bDate;
         });
         saveLocalStorage();//Guarda automaticamente ordenada las tareas por fecha
-        
-        let trElements = document.getElementsByTagName("tr");//
-        for(let i = trElements.length - 1; i > 0 ;i--){
-            trElements[i].remove();
-        }
-        /*
-        Ordeno mis tareas por fecha y las muestro todas, seria de mejor funcionalidad
-        poder ordenar segun en que categiria estemos
-        let table = document.getElementById("todoTable");
-        table.innerHTML = `
-        <tr>
-            <td class="firstColor center"><i class="las la-tasks"></i></i></td>
-            <td class="firstColor center">Fecha</td>
-            <td class="firstColor center">Hora</td>
-            <td class="firstColor center">Tarea</td>
-            <td class="firstColor center" ><select id="categoryFilter" >
-            </select></td>
-            <td  class="colorTd firstColor center"><i class="lar la-times-circle"></i></td>
-        </tr>
-        `;
-        selectCategory = document.getElementById("categoryFilter");
-        console.log(selectCategory);
-        updateOptionsCategory();
-        selectCategory.addEventListener("change", filterEntries, false);*/
         renderRows();
+    }
+    function initCalendar(){
+        var calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar:{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                
+            },
+            events: [],
+        });
+        calendarEl.style.color = "white";
+        calendar.setOption("locale","Es");
+    calendar.render();
+    }
+    function addEventCalendar(event){
+        calendar.addEvent(event);//Agrego las tareas al calendario
     }
 };
