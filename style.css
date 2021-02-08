@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 :root{
-    --body-color: #344055;
-    --first-color:#FAF33E;
-    --second-color:  #A7C3F6;
-    --third-color: #3BCEAC;
+    --body-color: #2b2b2b;
+    --first-color:#F2FF49;
+    --second-color:  #6B9AC4;
+    --third-color: #D36582;
+    --back-color: #222222;
     --light-color: #F7F7F2;
-    --medium-color: #272D2D;
-    --dark-color: #020402;
+    --medium-color: #3c3f41;
+    --dark-color: #1c1d21;
     --on-color: #0f0;
     --off-color: #f00;
-    --border-color-one: #2EC4B6;
+    --border-color-one: #F7567C;
     --border-color-two: #92B4F4;
-    --line-trough-color: #757083;
+    --line-trough-color: #8c8c8d;
     --border-color: 1px solid #2F2F2F;  
 }
 *{
@@ -40,7 +41,7 @@ input{
     border-radius: 40px;
     padding: 6px 10px;
     border: 2px solid var(--medium-color);
-    background-color: #222;
+    background-color: var(--back-color);
     outline: none;
     transition: .5s;
 }
@@ -48,7 +49,11 @@ input:hover{
     background: var(--light-color);
 }
 button{
+    margin-bottom: 15px;
     border: none;
+    font-size: .9rem;
+    text-transform: uppercase;
+    border-radius: 20px;
 }
 .container{
     padding: 5px;
@@ -57,65 +62,67 @@ button{
     flex-wrap: wrap;
     flex-direction: row;
 }
-.containerNew{
+.containerTodo{
     width: 45%;
     display: flex;
     flex-direction: column;
 }
-.containerNew input{
+.containerTodo input{
     height: 35px;
     width: 100%;
 }
-.containerInputs{
+.containerDateTime{
     padding-left: 20px;
     width: 30%;
     display: flex;
     flex-direction: column;
 }
 .containerBtn{
-    display: flex;
+    padding-left: 20px;
     width: 25%;
+    display: flex;
     flex-direction: column;
 }
-button{
+.containerBtn button{
+    height: 35px;
+    text-align: center;
     outline: none;
     cursor: pointer;
     transition: 600ms ease-out;
+    width: 100%;
 }
-button i{
-    font-size: 20px;
+.containerBtn button i{
+    font-size: .95rem;
+    color: var(--light-color);
+}
+.containerIncomplete{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
 }
 #dateInput{
-    color: var(--third-color);
+    color: var(--line-trough-color);
     width: 100%;
 }
 #timeInput{
-    color: var(--second-color);
+    color: var(--line-trough-color);
     width: 100%;
 }
-button#addBtn{
-    height: 35px;
-    width: 80%;
-    border-radius: 20px;
-    margin-left: 15%;
-    background: var(--border-color-one);
-    color: var(--body-color);
-}
-button#addBtn:hover{
+#addBtn{
     background: var(--third-color);
     color: var(--light-color);
+    width: 100%;
 }
-button#sortBtn{
-    width: 80%;
-    height: 35px;
-    border-radius: 20px;
-    margin-top: 14px;
-    margin-left: 15%;
+#addBtn:hover{
+    background: var(--border-color-one);
+    color: var(--light-color);
+}
+#sortBtn{
     background: var(--second-color);
-    color: var(--body-color);
-    
+    color: var(--light-color);
+    width: 100%;
 }
-button#sortBtn:hover{
+#sortBtn:hover{
     background: var(--border-color-two);
     color: var(--light-color);
 }
@@ -132,9 +139,9 @@ button#sortBtn:hover{
 #customLabel span{
     position: relative;
     display: block;
-    width: 80px;
-    height: 40px;
-    background: #222;
+    width: 70px;
+    height: 35px;
+    background: var(--dark-color);
     border-radius: 20px;
     box-shadow: inset 0 2px 15px rgba(0, 0, 0, 0.2),
                 inset 0 2px 2px rgba(0, 0, 0, 0.2),
@@ -144,8 +151,8 @@ button#sortBtn:hover{
     position: absolute;
     top: 0;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background: linear-gradient(to bottom, #444, #222);
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
@@ -154,7 +161,7 @@ button#sortBtn:hover{
     transform: scale(0.9);
 }
 #customLabel input:checked ~ .indicador{
-    left: 40px;
+    left: 35px;
 }
 #customLabel .indicador::before{
     content: '';
@@ -187,27 +194,28 @@ transition: .5s;
                 0 0 30px var(--on-color),
                 0 0 40px var(--on-color);
 }
-#incompleto{
-    margin-left: -85px;
+.containerIncomplete #incompleto{
+    margin-left: -75px;
     z-index: -50;
     padding-left: 20px;
-    height: 50px;
-    width: 37%;
+    padding-right: 5px;
+    height: 45px;
+    width: 100%;
     border-radius: 40px;
-    background: #222;
+    background: var(--back-color);
     text-transform: uppercase;
     display: flex;
     text-align: center;
     align-items: center;
-    color: var(--light-color);
+    color: var(--line-trough-color);
     font-weight: 300;
 }
-#incompleto span{
+.containerIncomplete #incompleto span{
     margin-left: -22px;
     border-radius: 40px;
-    background: var(--body-color);
-    height: 50px;
-    width: 95px;
+    background: var(--medium-color);
+    height: 43px;
+    width: 89px;
     transform: scale(.9);
 }
 .strike{
@@ -224,7 +232,7 @@ td{
 }
 td.firstColor{
     border-bottom: 3px solid var(--body-color);
-    background: var(--medium-color);
+    background: var(--dark-color);
     color: var(--light-color);
 }
 .colorTd{
@@ -273,15 +281,19 @@ select{
         border-radius: 20px;
         font-size: 1em;
     }
+    input[placeholder]:after{
+        content: '';
+        color: var(--light-color);
+    }
     input:hover{
         background: var(--first-color);
         color: var(--dark-color);
     }
-    input#dateInput{
+    #dateInput{
         width: 55%;
         height: 40px;
     }
-    input#timeInput{
+    #timeInput{
         width: 35%;
         height: 40px;
     }
@@ -289,15 +301,15 @@ select{
         width: 100%;
         flex-direction: row;
     }
-    .containerNew{
+    .containerTodo{
         width: 100%;
         display: flex;
         flex-direction: column;
     }
-    .containerInputs input{
+    .containerDateTime input{
         width: 100%;
     }
-    .containerInputs{
+    .containerDateTime{
         padding-left: 0; 
         display: flex;
         justify-content: space-between;
@@ -311,39 +323,41 @@ select{
         justify-content: space-between;
         width: 30%;
 }
-    button#addBtn{
+    #addBtn{
         width: 40px;
         height: 40px;
-        font-size: 1em;
-        padding: 10px; /*top left bottom right*/ 
+        padding: 6px; /*top left bottom right*/ 
         text-transform: uppercase ;
         border-radius: 50%;
         outline: none;
         margin-left: 15%;
     }
-    button#sortBtn{
+    #sortBtn{
         height: 40px;
         width: 50%;
-        padding: 10px; /*top left bottom right*/ 
+        padding: 6px; /*top left bottom right*/ 
         text-transform: uppercase;
         border-radius: 45px;
         outline: none;
         margin-top: 0;
         margin-left: 0;
     }
-span.hide{
+    #addBtn i{
+        font-size: 1.7rem;
+    }
+    #sortBtn i{
+        font-size: 1.7rem;
+    }
+    span.hide{
     bottom: -30px;
     visibility: hidden;
     }
-    tabl#todoTable{
+    #todoTable{
         margin-top: 10px;
         width: 100%;
     }
     th{
         height: 1.5px;
-    }
-    i{
-        font-size: 1.5rem;
     }
 }
 /*Tablets screen*/
@@ -361,16 +375,16 @@ span.hide{
         width: 100%;
         flex-direction: row;
     }
-    .containerNew{
+    .containerTodo{
         width: 100%;
         flex-direction: row;
         justify-content: space-between;
     }
-    .containerNew input{
+    .containerTodo input{
         width: 47%;
         padding-left: 10px;
     }
-    .containerInputs{
+    .containerDateTime{
         padding-left: 0; 
         width: 50%;
         flex-direction: row;

@@ -15,7 +15,7 @@
     
     <div class="container">
         <h3>Tarea</h3>
-        <div class="containerNew">
+        <div class="containerTodo">
             <!--    Inputs  -->
         <input type="text" placeholder="Ingrese una nueva tarea">
         <input type="text" placeholder="Ingrese una categoria" list="categoryList">
@@ -26,28 +26,32 @@
             <option value="Estudiar"></option>
             <option value="Importante"></option>
         </datalist>
-    <div class="containerInputs">
+    <div class="containerDateTime">
         <input type="date" name="" id="dateInput">
         <input type="time" name="" id="timeInput">
     </div>
     
     <!-- Buttons -->
     <div class="containerBtn">
-        <button id="addBtn"><i class="las la-plus space"></i><span class="hide">Agregar</span></button>
-        <button id="sortBtn"><i class="las la-sort-amount-down-alt space"></i><span class="hide">Ord. fecha</span></button>
+        <button id="addBtn"><i class="las la-plus-circle"></i><span class="hide"> Agregar</span> </button>
+        <button id="sortBtn"><i class="las la-calendar-check"></i><span class="hide"> Ordenar</span> </button>
     </div>
+    <div class="containerIncomplete">
         <label id="customLabel">
             <input type="checkbox" id="customCheckbox">
             <span></span>
             <i class="indicador"></i>
         </label>
-        <label id="incompleto"> <span></span> incompleto <i class="las la-chevron-up"></i> </label>
+        <label id="incompleto"> <span></span> incompleto <i class="las la-sort"></i> </label>
+    </div>
+        
+
     <table id="todoTable">
         <tr>
-            <td class="firstColor center"><i class="las la-tasks"></i></i></td>
-            <td class="firstColor center">Fecha</td>
-            <td class="firstColor center">Hora</td>
-            <td class="firstColor center">Tarea</td>
+            <td class="firstColor center"><i class="las la-list-alt"></i></i></i></td>
+            <td class="firstColor center"><i class="las la-calendar"></i><span></span> Fecha</td>
+            <td class="firstColor center"><i class="las la-clock"></i><span></span> Hora</td>
+            <td class="firstColor center"><i class="las la-sticky-note"></i> Tarea</td>
             <td class="firstColor center" ><select id="categoryFilter" >
             </select></td>
             <td  class="colorTd firstColor center"><i class="lar la-times-circle"></i></td>
