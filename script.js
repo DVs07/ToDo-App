@@ -3,6 +3,7 @@ todoMain();
 function todoMain(){
     const DEFAULT_OPTION = "Categoria";
 
+    
     let inputElement,
         secInputEle,
         addButton,
@@ -11,13 +12,14 @@ function todoMain(){
         timeInput,
         selectCategory,
         todoList = [],//Se crea un array, este solo puede contener string, se guardan en el local storage.
-        calendar;
+        calendar, 
+        incompleteSortBtn;
 
         getElements();
         addListeners();
         initCalendar();
         loadLocalStorage()//Cargo las tareas desde el local storage
-        renderRows();
+        renderRows(todoList);
         
         updateOptionsCategory();//Agrega nuevas categorias
 
@@ -31,12 +33,14 @@ function todoMain(){
         addButton = document.getElementById("addBtn");
         sortButton = document.getElementById("sortBtn");
         selectCategory = document.getElementById("categoryFilter");
+        incompleteSortBtn = document.getElementById('customCheckbox');
     };
     
     function addListeners(){
         addButton.addEventListener("click", addEntry, false);
         sortButton.addEventListener("click", sortEntry,false);
-        selectCategory.addEventListener("change", filterEntries, false);
+        selectCategory.addEventListener("change", multipleFilter, false);
+        incompleteSortBtn.addEventListener("change", multipleFilter, false);
     }
     function addEntry(event){
 
@@ -74,17 +78,12 @@ function todoMain(){
         saveLocalStorage();
 
     }
-
+    /*
     function filterEntries(event){
 
         let selection = selectCategory. value;
 
-        //Vacio mi tabla pero mantengo mi 1er fila
-        let trElements = document.getElementsByTagName("tr");//
-        for(let i = trElements.length - 1; i > 0 ;i--){
-            trElements[i].remove();
-        }
-        calendar.getEvents().forEach(event => event.remove());//Al filtrar por categoria, las muestro en el calendario.
+        clearTable();
         //Alternativa
         //Categoria muestra todas las tareas
         if(selection == DEFAULT_OPTION){
@@ -97,7 +96,7 @@ function todoMain(){
                 }
             })
         }
-    }
+    }*/
 
     //Actualiza y agrega opciones de categorias 
     function updateOptionsCategory(){
@@ -141,8 +140,8 @@ function todoMain(){
         }
     }
     /* ROWS */ 
-    function renderRows(){
-        todoList.forEach((todoObject) => {
+    function renderRows(arr){
+        arr.forEach((todoObject) => {
         
             displayRow(todoObject);
         });
@@ -266,7 +265,8 @@ function todoMain(){
             return aDate - bDate;
         });
         saveLocalStorage();//Guarda automaticamente ordenada las tareas por fecha
-        renderRows();
+        clearTable();
+        renderRows(todoList);
     }
     function initCalendar(){
         var calendarEl = document.getElementById('calendar');
@@ -286,5 +286,53 @@ function todoMain(){
     }
     function addEventCalendar(event){
         calendar.addEvent(event);//Agrego las tareas al calendario
+    }
+    function clearTable(){
+        //Vacio mi tabla pero mantengo mi 1er fila
+        let trElements = document.getElementsByTagName("tr");//
+        for(let i = trElements.length - 1; i > 0 ;i--){
+            trElements[i].remove();
+        }
+        calendar.getEvents().forEach(event => event.remove());//Al filtrar por categoria, las muestro en el calendario.
+    }
+    function incompletList(){
+        clearTable();
+        if(incompleteSortBtn.checked){
+            let filterIncompleteArray = todoList.filter(obj => obj.done == false);
+            renderRows(filterIncompleteArray);
+            filterDoneArray = todoList.filter(obj => obj.done == true);
+            renderRows(filterDoneArray);
+        }
+        else{
+            renderRows(todoList);
+        }
+    }
+    function multipleFilter(){
+        clearTable();
+        let selection = selectCategory. value;
+
+        if(selection == DEFAULT_OPTION){
+            if(incompleteSortBtn.checked){
+                let filterIncompleteArray = todoList.filter(obj => obj.done == false);
+                renderRows(filterIncompleteArray);
+                filterDoneArray = todoList.filter(obj => obj.done == true);
+                renderRows(filterDoneArray);
+            }
+            else{
+                renderRows(todoList);
+            }
+        }
+        else{
+            let filteredCategoryArray = todoList.filter(obj => obj.category == selection)
+            if(incompleteSortBtn.checked){
+                let filterIncompleteArray = filteredCategoryArray.filter(obj => obj.done == false);
+                renderRows(filterIncompleteArray);
+                filterDoneArray = filteredCategoryArray.filter(obj => obj.done == true);
+                renderRows(filterDoneArray);
+            }
+            else{
+                renderRows(filteredCategoryArray);
+            }
+        }
     }
 };
