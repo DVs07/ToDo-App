@@ -78,26 +78,6 @@ function todoMain(){
         saveLocalStorage();
 
     }
-    /*
-    function filterEntries(event){
-
-        let selection = selectCategory. value;
-
-        clearTable();
-        //Alternativa
-        //Categoria muestra todas las tareas
-        if(selection == DEFAULT_OPTION){
-            todoList.forEach( object => displayRow(object) );
-        }
-        else{
-            todoList.forEach( object => {
-                if( object.category == selection ){
-                    displayRow(object);
-                }
-            })
-        }
-    }*/
-
     //Actualiza y agrega opciones de categorias 
     function updateOptionsCategory(){
         //Creo un array para esas nuevas categorias
