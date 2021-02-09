@@ -239,7 +239,7 @@ function todoMain(){
         });
     }
     function sortEntry(){
-        todoList.sort((a,b)=> {
+        todoList.sort((b,a)=> {//(a,b) de menor a mayor y (b,a) de mayor a menor
             let aDate = Date.parse(a.date);//Lo parse a milisegundos
             let bDate = Date.parse(b.date);
             return aDate - bDate;
