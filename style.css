@@ -42,6 +42,7 @@ input{
     padding: 6px 10px;
     border: 2px solid var(--medium-color);
     background-color: var(--back-color);
+    color: var(--light-color);
     outline: none;
     transition: .5s;
 }
