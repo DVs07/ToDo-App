@@ -27,23 +27,22 @@ body{
     background: var(--body-color);
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
 }
 h2{
     color: var(--light-color);
 }
-h3{
-    padding: 8.5px;
+.title{
+    padding:10px;/*top lef bottom right*/
     background: var(--nav-color);
     border-bottom: 2px solid var(--nav-border-color);
     color: var(--light-color);
-    width: 100%;
     text-align: center;
     margin-bottom: 20px;
+    width: 100%;
 }
-nav{
-    position: absolute;
-    flex-direction: column;
-    width: 50%;
+.title2{
+    width: 100%;
 }
 input{
     margin-bottom: 15px;
@@ -67,14 +66,14 @@ button{
     border-radius: 20px;
 }
 .container{
-    margin-top: 60px;
-    padding: 5px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
 .containerTodo{
+    padding-left: 5px;
+    padding-right: 5px;
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -84,13 +83,14 @@ button{
     width: 100%;
 }
 .containerDateTime{
-    padding-left: 20px;
+    padding-left: 10px;
     width: 30%;
     display: flex;
     flex-direction: column;
 }
 .containerBtn{
-    padding-left: 20px;
+    padding-left: 15px;
+    padding-right: 5px;
     width: 25%;
     display: flex;
     flex-direction: column;
@@ -206,6 +206,9 @@ transition: .5s;
                 0 0 30px var(--on-color),
                 0 0 40px var(--on-color);
 }
+.containerIncomplete{
+    margin-left: 5px;
+}
 .containerIncomplete #incompleto{
     margin-left: -75px;
     z-index: -50;
@@ -234,7 +237,9 @@ transition: .5s;
     text-decoration: line-through;
     color: var(--line-trough-color)!important;
 }
-table#todoTable{
+#todoTable{
+    margin-left: 5px;
+    margin-right: 5px;
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
@@ -265,8 +270,11 @@ select{
     color: var(--second-color);
 }
 .containerCalendar{
-    padding: 0 5px 15px 5px;
     width: 100%;
+}
+.tableCalendar{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 #calendar{
     width: 100%;
@@ -284,21 +292,11 @@ select{
     nav{
         width: 100%;
     }
-    h3{
-        margin: 0;
-        text-align: center;
-        color: var(--light-color);
-        margin-bottom: 10px;
-    }
     input{
         width: 100%;
         margin-bottom: 10px;
         border-radius: 20px;
         font-size: 1em;
-    }
-    input[placeholder]:after{
-        content: '';
-        color: var(--light-color);
     }
     input:hover{
         background: var(--first-color);
@@ -325,37 +323,36 @@ select{
         width: 100%;
     }
     .containerDateTime{
-        padding-left: 0; 
+        margin-left: -4px;
+        margin-right: 5px;
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-        width: 70%;
+        width: 100%;
 }
     .containerBtn{ 
-        padding-left: 0; 
+        padding-top: 6px;
+        padding-left: 5%; 
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 30%;
+        width: 50%;
 }
     #addBtn{
-        width: 40px;
+        width: 35%;
         height: 40px;
-        padding: 6px; /*top left bottom right*/ 
+        padding: 7px 10%; /*top left bottom right*/ 
         text-transform: uppercase ;
-        border-radius: 50%;
+        border-radius: 45px;
         outline: none;
-        margin-left: 15%;
     }
     #sortBtn{
         height: 40px;
-        width: 50%;
-        padding: 6px; /*top left bottom right*/ 
+        width: 60%;
+        padding: 6px 21%; /*top left bottom right*/ 
         text-transform: uppercase;
         border-radius: 45px;
         outline: none;
-        margin-top: 0;
-        margin-left: 0;
     }
     #addBtn i{
         font-size: 1.7rem;
@@ -368,11 +365,16 @@ select{
     visibility: hidden;
     }
     #todoTable{
+        margin-left: 0;
+        margin-right: 0;
         margin-top: 10px;
         width: 100%;
     }
     th{
         height: 1.5px;
+    }
+    .containerCalendar{
+        margin-top: 5px;
     }
 }
 /*Tablets screen*/
@@ -380,14 +382,6 @@ select{
 (max-width: 1023px){
     body{
         flex-direction: column;
-    }
-    nav{
-        width: 100%;
-    }
-    h3{
-        margin: 0;
-        text-align: center;
-        margin-bottom: 10px;
     }
     .container{
         width: 100%;
@@ -403,7 +397,7 @@ select{
         padding-left: 10px;
     }
     .containerDateTime{
-        padding-left: 0; 
+        padding-left: 5px; 
         width: 50%;
         flex-direction: row;
     }
@@ -418,7 +412,7 @@ select{
     }
     #timeInput{
         padding-left: 10px;
-        width: 40%;
+        width: 41%;
         margin-left: 30px;
     }
     input{
@@ -451,5 +445,9 @@ select{
     }
     table{
         width: 100%;
+    }
+    #todoTable{
+        margin-left: 0;
+        margin-right: 0;
     }
 }
